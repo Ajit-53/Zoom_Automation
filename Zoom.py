@@ -8,7 +8,7 @@ df = pd.read_csv('meetingschedule.csv')
 df_new = pd.DataFrame()
 
 while(True):
-                           #Check the current system time
+     #Check the current system time
     timestr = datetime.now().strftime("%H:%M")
     #Check if the current time is mentioned in the Dataframe
     if timestr in df.Time.values:
@@ -25,6 +25,11 @@ while(True):
         time.sleep(2)
         #Write the meeting ID from the dataframe onto the Zoom App
         keyboard.write(df_new.iloc[0,1]) #
+        
+        #For tapping the Turn off audio option on Zoom app
+        position = pyautogui.locateOnScreen("buttons\\turn_off_audio.png")
+        pyautogui.moveTo(position)
+        pyautogui.click()
 
         #For tapping the Turn off video option on Zoom app
         position = pyautogui.locateOnScreen("buttons\\turn_off_vid_button.png")
